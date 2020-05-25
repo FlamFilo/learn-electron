@@ -1,21 +1,17 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
-  "main": "main.js",
+  "name": "electron-file-app",
+  "version": "0.1.0",
+  "description": "A file explorer app to learn electron",
+  "main": "app/electron/main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/FlamFilo/learn-electron",
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "File Explorer"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "FlamFilo",
   "devDependencies": {
     "electron": "^9.0.0"
   }
