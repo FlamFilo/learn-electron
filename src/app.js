@@ -6,8 +6,17 @@ import { updateFolderView } from './helpers/folder.js'
 const homePath = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE
 let currentPath = homePath
 
+const onListClick = (event) => {
+  console.log('CLICK')
+  let fileItem = event.target.parentNode
+  console.warn(fileItem.name)
+  let listContainer = document.getElementById('app-file-list-container')
+  updateFolderView(fileItem.path, listContainer)
+}
+
 window.addEventListener('DOMContentLoaded', () => {
-  let appElement = document.getElementById('app-content')
-  updateFolderView(currentPath, appElement)
+  let listContainer = document.getElementById('app-file-list-container')
+  listContainer.addEventListener('click', onListClick)
+  updateFolderView(currentPath, listContainer)
 })
 

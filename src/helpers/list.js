@@ -15,6 +15,15 @@ export const createDocumentFragment = (childs) => {
   }, document.createDocumentFragment())
   return fragment
 }
+/**
+ * Remove all Node childs
+ * @param {Node} element element
+ */
+export const removeChilds = (element) => {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild)
+  }
+}
 
 /**
  * Create list element
@@ -45,8 +54,9 @@ export const createListItem = (content = '') => {
  * @param {Node} items
  * @returns {Node} created list
  */
-export const createList = (items) => {
+export const createList = (items, attributes) => {
   let list = createListElement()
+  list = Object.assign(list, attributes)
   list.appendChild(items)
   return list
 }
