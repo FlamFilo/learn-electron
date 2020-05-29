@@ -4,6 +4,19 @@
  */
 
 /**
+ * Transform dom array to documentFragment to group them
+ * Permit to append multiple childs using Node.appendChild
+ * @param {Node[]} childs elements to group up
+ */
+export const createDocumentFragment = (childs) => {
+  let fragment = childs.reduce((fragment, child) => {
+    fragment.appendChild(child)
+    return fragment
+  }, document.createDocumentFragment())
+  return fragment
+}
+
+/**
  * Create list element
  * @returns {Node} create list
  */
@@ -15,42 +28,25 @@ export const createListElement = () => {
 
 /**
  * Create a item to add in a list
- * @param {Node|String} content item content
+ * @param {String} content item content
  * @returns {Node} created item
  */
-export const createListItem = (content) => {
+export const createListItem = (content = '') => {
   let item = document.createElement('li')
   item.classList.add('app-list-item')
-  if (typeof content === 'string') {
-    item.innerText = content
-  } else if (content instanceof Node) {
-    item.appendChild(content)
-  }
+  let button = document.createElement('button')
+  button.innerText = content
+  item.appendChild(button)
   return item
 }
 
 /**
- * Create items to add in a list
- * @param {Node|String} contents item contents
- * @returns {DocumentFragment} create items
- */
-export const createListItems = (contents) => {
-  let items = contents.reduce((fragment, content) => {
-    let item = createListItem(content)
-    fragment.appendChild(item)
-    return fragment
-  }, document.createDocumentFragment())
-  return items
-}
-
-/**
  * Create a list of items
- * @param {Node|string} contents item contents
+ * @param {Node} items
  * @returns {Node} created list
  */
-export const createList = (contents) => {
+export const createList = (items) => {
   let list = createListElement()
-  let items = createListItems(contents)
   list.appendChild(items)
   return list
 }
